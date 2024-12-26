@@ -8,234 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Previous styles remain the same */
-
-        /* Preloader styles */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #111111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .preloader-wrapper {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .loading-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: 500;
-            color: white;
-            font-family: monospace;
-        }
-
-        .counter {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 120px;
-            font-weight: 800;
-            color: white;
-            z-index: 2;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 2px;
-            background: white;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        body.loaded {
-            overflow: auto;
-        }
-
-        .hide-preloader {
-            transform: translateY(-100%);
-            transition: all 0.7s ease;
-        }
-
-        /* Hide main content initially */
-        .content-wrapper {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        /* mobile nav */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: black;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        .menu-btn {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .menu-btn.active .bar:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-btn.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-btn.active .bar:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .bar {
-            display: block;
-            width: 25px;
-            height: 2px;
-            margin: 5px auto;
-            transition: all 0.3s ease-in-out;
-            background-color: white;
-        }
-
-        /* hero */
-        .word-wrapper {
-            padding: 0 0.1em;
-        }
-
-        .word-slide {
-            display: inline-block;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .word-slide::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.4s ease;
-        }
-
-        .word-wrapper:hover .word-slide {
-            transform: translateY(-2px);
-        }
-
-        .word-wrapper:hover .word-slide::after {
-            width: 100%;
-        }
-
-        .typewriter::after {
-            content: '|';
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .animate-scroll {
-            animation: scrollDown 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollDown {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-
-            75% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 0;
-            }
-        }
-
-        /* Magnetic effect container */
-        .magnetic-wrap {
-            display: inline-block;
-            transform-style: preserve-3d;
-        }
-
-        /* Custom styles that Tailwind doesn't provide */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            background: #000;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 999;
-            display: none;
-        }
-
-        @media (min-width: 768px) {
-            .cursor {
-                display: block;
-            }
-        }
-
-        .project-image {
-            transition: transform 0.5s ease;
-        }
-
-        .project-item:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-overlay {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .project-meta {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .project-item:hover .project-overlay,
-        .project-item:active .project-overlay {
-            opacity: 1;
-        }
-
-        .project-item:hover .project-meta,
-        .project-item:active .project-meta {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/global.css">
 </head>
 
 <body class="bg-white text-black overflow-hidden cursor-none">
@@ -258,7 +31,6 @@
             <a href="#about" class="hover:opacity-50 transition-opacity">About</a>
             <a href="#contact" class="hover:opacity-50 transition-opacity">Contact</a>
         </div>
-        <!-- Mobile menu button -->
         <button class="menu-btn md:hidden text-white">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -266,7 +38,6 @@
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu md:hidden flex flex-col justify-center items-center z-40">
         <div class="flex flex-col space-y-8 text-center">
             <a href="#works" class="text-white text-2xl hover:opacity-50 transition-opacity">Works</a>
@@ -282,7 +53,8 @@
             <img src="assets/herobg.png" alt="" class="w-full h-full object-cover">
         </div>
         <div class="relative z-10 text-center px-4">
-            <h1 class="interactive-title text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 text-white" id="hero-title">
+            <h1 class="interactive-title text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 text-white"
+                id="hero-title">
                 <span class="word-wrapper relative inline-block overflow-hidden">
                     <span class="word-slide">Werksasurart</span>
                 </span>
@@ -305,7 +77,6 @@
     <!-- About Section -->
     <section class="py-16 md:py-32 bg-black text-white" id="about">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
-            <!-- Header -->
             <div class="mb-16 md:mb-24">
                 <span class="text-sm uppercase tracking-widest text-gray-400">About Us</span>
                 <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mt-4 mb-8">We create art that<br />matters.</h2>
@@ -361,12 +132,10 @@
     </section>
 
     <!-- Projects Section -->
-    <!-- Projects Section -->
     <section class="py-16 md:py-32 px-4 md:px-12" id="works">
         <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-16">Selected Works</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
-            <!-- Featured Project - S.O.L.O.M.O.N -->
             <div
                 class="col-span-1 md:col-span-6 lg:col-span-8 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -380,7 +149,6 @@
                 </div>
             </div>
 
-            <!-- Small Project - Godogan/kodok/katak -->
             <div
                 class="col-span-1 md:col-span-4 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -394,7 +162,6 @@
                 </div>
             </div>
 
-            <!-- Medium Project - S.I.D.A.K.A.R.Y.A (1) -->
             <div
                 class="col-span-1 md:col-span-4 lg:col-span-6 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -408,7 +175,6 @@
                 </div>
             </div>
 
-            <!-- Medium Project - S.I.D.A.K.A.R.Y.A (2) -->
             <div
                 class="col-span-1 md:col-span-4 lg:col-span-6 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -422,7 +188,6 @@
                 </div>
             </div>
 
-            <!-- Small Project - Rahwana/Dasanana/Dasamuka -->
             <div
                 class="col-span-1 md:col-span-4 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -437,7 +202,6 @@
                 </div>
             </div>
 
-            <!-- Large Project - Final Project -->
             <div
                 class="col-span-1 md:col-span-6 lg:col-span-8 project-item relative overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[600px]">
                 <div class="h-full relative overflow-hidden">
@@ -478,314 +242,7 @@
         </div>
     </section>
 
-    <script>
-         const menuBtn = document.querySelector('.menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-
-        let menuOpen = false;
-
-        function toggleMenu() {
-            menuOpen = !menuOpen;
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = menuOpen ? 'hidden' : '';
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking a link
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMenu();
-            });
-        });
-
-        // Handle resize to prevent menu issues
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768 && menuOpen) {
-                toggleMenu();
-            }
-        });
-
-        // Optional: Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (menuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                toggleMenu();
-            }
-        });
-
-        // Add GSAP animations for menu items
-        gsap.from('.mobile-menu a', {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.1,
-            paused: true,
-            ease: 'power2.out'
-        });
-
-        // Play animations when menu opens
-        const tl = gsap.timeline({ paused: true });
-        tl.from('.mobile-menu a', {
-            opacity: 100,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'power2.out'
-        });
-
-        // Update toggle function to include animation
-        menuBtn.addEventListener('click', () => {
-            if (!menuOpen) {
-                tl.restart();
-            }
-        });
-
-        // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger);
-
-        window.addEventListener('load', () => {
-            const preloader = document.querySelector('.preloader');
-            const counter = document.querySelector('.counter');
-            const progressBar = document.querySelector('.progress-bar');
-            const loadingText = document.querySelector('.loading-text');
-            const contentWrapper = document.querySelector('.content-wrapper');
-
-            // Create GSAP timeline for loading animation
-            const loadingTl = gsap.timeline();
-
-            // Counter animation
-            loadingTl.to(counter, {
-                innerHTML: '100%',
-                duration: 1.5,
-                snap: { innerHTML: 1 },
-                ease: 'power2.inOut',
-                onUpdate: () => {
-                    const counterValue = parseInt(counter.innerHTML);
-                    gsap.to(progressBar, {
-                        width: `${counterValue}%`,
-                        duration: 0.05,
-                        ease: 'none'
-                    });
-                }
-            });
-
-            // Loading text animation
-            loadingTl.to(loadingText, {
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.in'
-            }, '-=0.5');
-
-            // Hide counter and prepare for final animation
-            loadingTl.to(counter, {
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.in'
-            }, '-=0.3');
-
-            // Slide out preloader
-            loadingTl.to(preloader, {
-                duration: 0.8,
-                yPercent: -100,
-                ease: 'power3.inOut'
-            });
-
-            // Show content
-            loadingTl.to(contentWrapper, {
-                opacity: 1,
-                visibility: 'visible',
-                duration: 0.5,
-                onComplete: () => {
-                    document.body.classList.add('loaded');
-                }
-            }, '-=0.3');
-        });
-
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX - 10,
-                y: e.clientY - 10,
-                duration: 0.2
-            });
-        });
-
-        // Hero animations
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hero text animation
-            const words = ['authentic works of art', 'unique experiences', 'digital masterpieces'];
-            let wordIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            const typewriterElement = document.querySelector('.typewriter');
-
-            function typeWriter() {
-                const currentWord = words[wordIndex];
-
-                if (isDeleting) {
-                    typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                if (!isDeleting && charIndex === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, 1500);
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    wordIndex = (wordIndex + 1) % words.length;
-                    setTimeout(typeWriter, 500);
-                } else {
-                    setTimeout(typeWriter, isDeleting ? 50 : 100);
-                }
-            }
-
-            // Initialize animations
-            gsap.to('#hero-subtitle', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                delay: 1
-            });
-
-            gsap.to('.scroll-indicator', {
-                opacity: 1,
-                duration: 1,
-                delay: 2
-            });
-
-            // Start typewriter
-            setTimeout(typeWriter, 1500);
-
-            // Magnetic effect for title words
-            const magneticWrappers = document.querySelectorAll('.word-wrapper');
-
-            magneticWrappers.forEach(wrap => {
-                wrap.addEventListener('mousemove', (e) => {
-                    const bounds = wrap.getBoundingClientRect();
-                    const mouseX = e.clientX - bounds.left;
-                    const mouseY = e.clientY - bounds.top;
-                    const centerX = bounds.width / 2;
-                    const centerY = bounds.height / 2;
-
-                    const deltaX = (mouseX - centerX) * 0.1;
-                    const deltaY = (mouseY - centerY) * 0.1;
-
-                    gsap.to(wrap.querySelector('.word-slide'), {
-                        x: deltaX,
-                        y: deltaY,
-                        duration: 0.3
-                    });
-                });
-
-                wrap.addEventListener('mouseleave', () => {
-                    gsap.to(wrap.querySelector('.word-slide'), {
-                        x: 0,
-                        y: 0,
-                        duration: 0.3
-                    });
-                });
-            });
-        });
-
-        // Project items animation
-        gsap.utils.toArray('.project-item').forEach((item, index) => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 1
-                },
-                y: 50,
-                opacity: 0,
-                delay: index * 0.2
-            });
-        });
-
-        // Hover animations for project items
-        document.querySelectorAll('.project-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                gsap.to(cursor, {
-                    scale: 2,
-                    backgroundColor: 'white',
-                    duration: 0.3
-                });
-            });
-
-            item.addEventListener('mouseleave', () => {
-                gsap.to(cursor, {
-                    scale: 1,
-                    backgroundColor: 'black',
-                    duration: 0.3
-                });
-            });
-        });
-        // Text reveal animations
-        gsap.utils.toArray('h2').forEach(title => {
-            gsap.from(title, {
-                scrollTrigger: {
-                    trigger: title,
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 1
-                },
-                y: 50,
-                opacity: 0
-            });
-        });
-        gsap.utils.toArray('.stat-card').forEach((stat, index) => {
-            gsap.from(stat, {
-                scrollTrigger: {
-                    trigger: stat,
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 1
-                },
-                y: 50,
-                opacity: 0,
-                delay: index * 0.2
-            });
-        });
-
-        // Animate team members
-        gsap.utils.toArray('.team-member').forEach((member, index) => {
-            gsap.from(member, {
-                scrollTrigger: {
-                    trigger: member,
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 1
-                },
-                y: 50,
-                opacity: 0,
-                delay: index * 0.2
-            });
-        });
-
-        // Animate services
-        gsap.utils.toArray('.services div').forEach((service, index) => {
-            gsap.from(service, {
-                scrollTrigger: {
-                    trigger: service,
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 1
-                },
-                y: 30,
-                opacity: 0,
-                delay: index * 0.2
-            });
-        });
-    </script>
+    <script src="js/mian.js"></script>
 </body>
 
 </html>
