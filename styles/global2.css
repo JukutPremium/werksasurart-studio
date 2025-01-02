@@ -70,7 +70,6 @@ body {
 .cursor.expanded {
     transform: scale(2);
 }
-
 /* cursor end */
 /* project start */
 .project-item {
@@ -232,6 +231,19 @@ body {
         height: 400px !important;
         margin-bottom: 1rem;
     }
+    .cursor {
+        display: none;
+    }
+    .mobile-display-none {
+        display: none;
+    }
 }
 
 /* Selected Work end*/
+
+
+
+
+
+
+

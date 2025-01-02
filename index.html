@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Werksasurart Studio - Creative Digital Art</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles/global2.css">
+    <link rel="stylesheet" href="styles/global2.css" />
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
     <!-- Custom Cursor -->
     <div class="cursor"></div>
-    <nav class="fixed w-full py-8 px-12 flex justify-between items-center z-50 mix-blend-difference">
+    <nav class="fixed w-full py-8 px-12 justify-between items-center z-50 mix-blend-difference hidden md:flex">
         <div class="text-2xl font-bold">Werksasurart</div>
         <div class="hidden md:flex space-x-12">
             <a href="#works" class="nav-link">Works</a>
@@ -31,6 +31,31 @@
             <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full py-8 px-12 flex justify-between items-center z-50 bg-transparent md:hidden">
+        <div class="text-2xl font-bold">Werksasurart</div>
+        <div>
+            <button id="menu-toggle" class="focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-black text-white flex flex-col justify-center items-center hidden z-50">
+        <button id="menu-close" class="absolute top-6 right-6 text-3xl font-bold focus:outline-none">
+            &times;
+        </button>
+        <div class="flex flex-col justify-center items-center space-y-8 h-full text-white">
+            <a href="#works" class="text-3xl font-semibold hover:text-gray-400">Works</a>
+            <a href="#about" class="text-3xl font-semibold hover:text-gray-400">About</a>
+            <a href="#contact" class="text-3xl font-semibold hover:text-gray-400">Contact</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="h-screen flex items-center justify-center relative">
@@ -40,7 +65,9 @@
                 <span class="block transform translate-y-full opacity-0">Digital Art</span>
                 <span class="block transform translate-y-full opacity-0">Studio</span>
             </h1>
-            <p class="text-xl opacity-0 transform translate-y-4">Creating Digital Masterpieces</p>
+            <p class="text-xl opacity-0 transform translate-y-4">
+                Creating Digital Masterpieces
+            </p>
         </div>
     </section>
 
@@ -54,17 +81,19 @@
                     <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
                         <h3 class="text-3xl font-bold mb-4">Our Vision</h3>
                         <p class="text-xl leading-relaxed opacity-70">
-                            To become a leading force in digital artistry, bridging traditional cultural elements with
-                            modern digital innovation, creating impactful visual experiences that inspire and connect
+                            To become a leading force in digital artistry, bridging
+                            traditional cultural elements with modern digital innovation,
+                            creating impactful visual experiences that inspire and connect
                             with audiences globally.
                         </p>
                     </div>
                     <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
                         <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
                         <p class="text-xl leading-relaxed opacity-70">
-                            We strive to push the boundaries of digital art while preserving cultural heritage,
-                            delivering exceptional creative solutions that exceed client expectations, and fostering a
-                            community of artistic innovation.
+                            We strive to push the boundaries of digital art while preserving
+                            cultural heritage, delivering exceptional creative solutions
+                            that exceed client expectations, and fostering a community of
+                            artistic innovation.
                         </p>
                     </div>
                 </div>
@@ -72,14 +101,79 @@
                 <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
                     <div class="flex items-start gap-6">
                         <div>
-                            <h3 class="text-3xl font-bold mb-2">John Doe</h3>
-                            <p class="text-lg opacity-70 mb-4">Founder & Creative Director</p>
+                            <h3 class="text-3xl font-bold mb-2">Pablo</h3>
+                            <p class="text-lg opacity-70 mb-4">
+                                Founder & Creative Director
+                            </p>
                             <p class="text-base opacity-70 leading-relaxed">
-                                With over 10 years of experience in digital art and illustration, John has led numerous
-                                successful projects and collaborations with major brands worldwide. His unique vision
-                                combines traditional artistic elements with cutting-edge digital techniques.
+                                With over 10 years of experience in digital art and
+                                illustration, Pablo has led numerous successful projects and
+                                collaborations with major brands worldwide. His unique vision
+                                combines traditional artistic elements with cutting-edge
+                                digital techniques.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Services Section -->
+            <div class="mb-8">
+                <h3 class="text-4xl font-bold mb-12">Our Services</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="service-card bg-white/5 p-8 rounded-2xl backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-bold mb-4">Digital Art</h4>
+                        <p class="opacity-70">
+                            Creating stunning digital artwork that pushes creative
+                            boundaries and captures imagination.
+                        </p>
+                    </div>
+                    <div
+                        class="service-card bg-white/5 p-8 rounded-2xl backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-bold mb-4">Illustration</h4>
+                        <p class="opacity-70">
+                            Crafting unique illustrations that tell compelling stories and
+                            engage audiences.
+                        </p>
+                    </div>
+                    <div
+                        class="service-card bg-white/5 p-8 rounded-2xl backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-bold mb-4">Brand Identity</h4>
+                        <p class="opacity-70">
+                            Developing distinctive visual identities that make brands stand
+                            out in the digital age.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-container">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    <div class="bg-white/5 p-4 md:p-8 rounded-2xl backdrop-blur-sm text-center">
+                        <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="150">
+                            0
+                        </h4>
+                        <p class="text-sm md:text-lg opacity-70">Projects Completed</p>
+                    </div>
+                    <div class="bg-white/5 p-4 md:p-8 rounded-2xl backdrop-blur-sm text-center">
+                        <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="100">
+                            0
+                        </h4>
+                        <p class="text-sm md:text-lg opacity-70">Happy Clients</p>
+                    </div>
+                    <div class="bg-white/5 p-4 md:p-8 rounded-2xl backdrop-blur-sm text-center">
+                        <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="10">
+                            0
+                        </h4>
+                        <p class="text-sm md:text-lg opacity-70">Years Experience</p>
+                    </div>
+                    <div class="bg-white/5 p-4 md:p-8 rounded-2xl backdrop-blur-sm text-center">
+                        <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="15">
+                            0
+                        </h4>
+                        <p class="text-sm md:text-lg opacity-70">Awards Won</p>
                     </div>
                 </div>
             </div>
@@ -89,18 +183,23 @@
     <!-- Works Section -->
     <section id="works" class="py-24 md:py-32 px-8 md:px-12 bg-[#0a0a0a]">
         <h2 class="text-5xl md:text-6xl font-bold mb-12 md:mb-24 text-white opacity-0 transform translate-y-4"
-            data-scroll>Selected Works</h2>
+            data-scroll>
+            Selected Works
+        </h2>
 
         <div class="grid grid-cols-12 gap-4 md:gap-8">
             <div class="col-span-12 md:col-span-8 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/2.jpg" alt="S.O.L.O.M.O.N"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
-                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">S.O.L.O.M.O.N</h3>
-                        <p class="text-white/90 max-w-md">A digital masterpiece exploring the depths of mystical realms.
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+                            S.O.L.O.M.O.N
+                        </h3>
+                        <p class="text-white/90 max-w-md">
+                            A digital masterpiece exploring the depths of mystical realms.
                         </p>
                     </div>
                 </div>
@@ -109,38 +208,67 @@
             <div class="col-span-12 md:col-span-4 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/1.jpg" alt="Godogan"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Illustration • 2024</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Godogan/kodok/katak</h3>
-                        <p class="text-white/90">Traditional illustration with a modern twist.</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            Godogan/kodok/katak
+                        </h3>
+                        <p class="text-white/90">
+                            Traditional illustration with a modern twist.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-span-12 md:col-span-6 project-item h-[480px]" data-scroll>
+            <div class="col-span-12 md:col-span-4 project-item h-[640px] md:hidden" data-scroll>
+                <div class="relative h-full w-full overflow-hidden rounded-2xl">
+                    <img src="/assets/7.jpg" alt="Godogan"
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
+                    <div
+                        class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
+                        <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            S.I.D.A.K.A.R.Y.A
+                        </h3>
+                        <p class="text-white/90">
+                            A fusion of traditional and digital artistry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 project-item h-[480px] mobile-display-none" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/4.jpg" alt="S.I.D.A.K.A.R.Y.A"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">S.I.D.A.K.A.R.Y.A</h3>
-                        <p class="text-white/90">A fusion of traditional and digital artistry.</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            S.I.D.A.K.A.R.Y.A
+                        </h3>
+                        <p class="text-white/90">
+                            A fusion of traditional and digital artistry.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-span-12 md:col-span-6 project-item h-[480px]" data-scroll>
+            <div class="col-span-12 md:col-span-6 project-item h-[480px] mobile-display-none" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/5.jpg" alt="S.I.D.A.K.A.R.Y.A II"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">S.I.D.A.K.A.R.Y.A II</h3>
-                        <p class="text-white/90">Continuing the journey through digital realms.</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            S.I.D.A.K.A.R.Y.A II
+                        </h3>
+                        <p class="text-white/90">
+                            Continuing the journey through digital realms.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -148,11 +276,13 @@
             <div class="col-span-12 md:col-span-4 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/3.jpg" alt="Rahwana"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Illustration • 2024</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Rahwana/Dasanana</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            Rahwana/Dasanana
+                        </h3>
                         <p class="text-white/90">Mythological character reimagined.</p>
                     </div>
                 </div>
@@ -161,12 +291,16 @@
             <div class="col-span-12 md:col-span-8 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
                     <img src="/assets/6.jpeg" alt="Nature Harmony"
-                        class="project-image w-full h-full object-cover transition-transform duration-700">
+                        class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Nature Harmony</h3>
-                        <p class="text-white/90">Exploring the balance between nature and digital art.</p>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+                            Nature Harmony
+                        </h3>
+                        <p class="text-white/90">
+                            Exploring the balance between nature and digital art.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -178,10 +312,10 @@
             <h2 class="text-6xl font-bold mb-16">Get in Touch</h2>
             <form class="space-y-8">
                 <div>
-                    <input type="text" placeholder="Your Name" class="form-input w-full">
+                    <input type="text" placeholder="Your Name" class="form-input w-full" />
                 </div>
                 <div>
-                    <input type="email" placeholder="Your Email" class="form-input w-full">
+                    <input type="email" placeholder="Your Email" class="form-input w-full" />
                 </div>
                 <div>
                     <textarea placeholder="Your Message" class="form-input w-full h-32"></textarea>
@@ -190,8 +324,13 @@
             </form>
         </div>
     </section>
+    <footer class="py-12 bg-black text-center text-white">
+        <p class="text-sm opacity-70">
+            &copy; 2024 The Pixel Websmith. All rights reserved.
+        </p>
+    </footer>
 
-   <script src="js/main2.js"></script>
+    <script src="js/main2.js"></script>
 </body>
 
 </html>
