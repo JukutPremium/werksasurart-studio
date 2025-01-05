@@ -1,10 +1,42 @@
 gsap.registerPlugin(ScrollTrigger);
-
+const navbarDesktop = document.querySelector('nav.md\\:flex');
+const navbarMobile = document.querySelector('nav.md\\:hidden');
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        gsap.to(navbarDesktop, {
+            backgroundColor: 'rgba(10, 10, 10, 0.8)',
+            boxShadow: '0px 4px 6px rgba(10, 10, 10, 0.1)',
+            duration: 0.3,
+            ease: 'power2.out',
+        });
+        gsap.to(navbarMobile, {
+            backgroundColor: 'rgba(10, 10, 10, 0.8)',
+            boxShadow: '0px 4px 6px rgba(10, 10, 10, 0.1)',
+            duration: 0.3,
+            ease: 'power2.out',
+        });
+    } else {
+        gsap.to(navbarDesktop, {
+            backgroundColor: 'rgba(10, 10, 10, 0)',
+            boxShadow: 'none',
+            duration: 0.3,
+            ease: 'power2.out',
+        });
+
+        gsap.to(navbarMobile, {
+            backgroundColor: 'rgba(10, 10, 10, 0)',
+            boxShadow: 'none',
+            duration: 0.3,
+            ease: 'power2.out',
+        });
+    }
+});
 
 menuToggle.addEventListener('click', () => {
     mobileMenu.classList.remove('hidden');
