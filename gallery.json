@@ -1,0 +1,126 @@
+{
+    "gallery": [
+      {
+       
+        "category": "digital-art",
+        "image": "assets/katak.jpg",
+        "alt": "Godogan/kodok/katak",
+        "title": "Godogan/kodok/katak",
+        "type": "Digital Art",
+        "year": "2024"
+      },
+      {
+       
+        "category": "illustration",
+        "image": "assets/solomon.jpg",
+        "alt": "S.O.L.O.M.O.N",
+        "title": "S.O.L.O.M.O.N",
+        "type": "Illustration",
+        "year": "2024"
+      },
+      {
+        
+        "category": "design",
+        "image": "assets/natureharmony.jpeg",
+        "alt": "Nature Harmony",
+        "title": "Nature Harmony",
+        "type": "Design",
+        "year": "2024"
+      },
+      {
+       
+        "category": "digital-art",
+        "image": "assets/katak.jpg",
+        "alt": "Godogan/kodok/katak",
+        "title": "Godogan/kodok/katak",
+        "type": "Digital Art",
+        "year": "2024"
+      },
+      {
+       
+        "category": "illustration",
+        "image": "assets/solomon.jpg",
+        "alt": "S.O.L.O.M.O.N",
+        "title": "S.O.L.O.M.O.N",
+        "type": "Illustration",
+        "year": "2024"
+      },
+      {
+        
+        "category": "design",
+        "image": "assets/natureharmony.jpeg",
+        "alt": "Nature Harmony",
+        "title": "Nature Harmony",
+        "type": "Design",
+        "year": "2024"
+      },
+      {
+       
+        "category": "digital-art",
+        "image": "assets/katak.jpg",
+        "alt": "Godogan/kodok/katak",
+        "title": "Godogan/kodok/katak",
+        "type": "Digital Art",
+        "year": "2024"
+      },
+      {
+       
+        "category": "illustration",
+        "image": "assets/solomon.jpg",
+        "alt": "S.O.L.O.M.O.N",
+        "title": "S.O.L.O.M.O.N",
+        "type": "Illustration",
+        "year": "2024"
+      },
+      {
+        
+        "category": "design",
+        "image": "assets/natureharmony.jpeg",
+        "alt": "Nature Harmony",
+        "title": "Nature Harmony",
+        "type": "Design",
+        "year": "2024"
+      },
+      {
+       
+        "category": "digital-art",
+        "image": "assets/katak.jpg",
+        "alt": "Godogan/kodok/katak",
+        "title": "Godogan/kodok/katak",
+        "type": "Digital Art",
+        "year": "2024"
+      },
+      {
+       
+        "category": "illustration",
+        "image": "assets/solomon.jpg",
+        "alt": "S.O.L.O.M.O.N",
+        "title": "S.O.L.O.M.O.N",
+        "type": "Illustration",
+        "year": "2024"
+      },
+      {
+        
+        "category": "design",
+        "image": "assets/natureharmony.jpeg",
+        "alt": "Nature Harmony",
+        "title": "Nature Harmony",
+        "type": "Design",
+        "year": "2024"
+      }
+    ],
+    "categories": [
+      {
+        "id": "digital-art",
+        "name": "Digital Art"
+      },
+      {
+        "id": "illustration",
+        "name": "Illustration"
+      },
+      {
+        "id": "design",
+        "name": "Design"
+      }
+    ]
+  }

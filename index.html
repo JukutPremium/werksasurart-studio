@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles/global2.css" />
+    <link rel="stylesheet" href="styles/global.css" />
 </head>
 
 <body>
@@ -26,8 +26,9 @@
     <nav class="fixed w-full py-8 px-12 justify-between items-center z-50 mix-blend-difference hidden md:flex">
         <div class="text-2xl font-bold">Werksasurart</div>
         <div class="hidden md:flex space-x-12">
+            <a href="index.html" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
-            <a href="#works" class="nav-link">Works</a>
+            <a href="gallery.html" class="nav-link">Works</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
@@ -51,8 +52,9 @@
             &times;
         </button>
         <div class="flex flex-col justify-center items-center space-y-8 h-full text-white">
+            <a href="index.html" class="text-3xl font-semibold hover:text-gray-400">Home</a>
             <a href="#about" class="text-3xl font-semibold hover:text-gray-400">About</a>
-            <a href="#works" class="text-3xl font-semibold hover:text-gray-400">Works</a>
+            <a href="gallery.html" class="text-3xl font-semibold hover:text-gray-400">Works</a>
             <a href="#contact" class="text-3xl font-semibold hover:text-gray-400">Contact</a>
         </div>
     </div>
@@ -190,7 +192,7 @@
         <div class="grid grid-cols-12 gap-4 md:gap-8">
             <div class="col-span-12 md:col-span-8 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
-                    <img src="/assets/2.jpg" alt="S.O.L.O.M.O.N"
+                    <img src="/assets/solomon.jpg" alt="S.O.L.O.M.O.N"
                         class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
@@ -207,7 +209,7 @@
 
             <div class="col-span-12 md:col-span-4 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
-                    <img src="/assets/1.jpg" alt="Godogan"
+                    <img src="/assets/katak.jpg" alt="Godogan"
                         class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
@@ -224,7 +226,7 @@
 
             <div class="col-span-12 md:col-span-4 project-item h-[640px] md:hidden" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
-                    <img src="/assets/7.jpg" alt="Godogan"
+                    <img src="/assets/sidakarya.jpg" alt="Godogan"
                         class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
@@ -264,7 +266,7 @@
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
                         <span class="text-white/70 text-sm tracking-wider mb-2">Digital Art • 2024</span>
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
-                            S.I.D.A.K.A.R.Y.A II
+                            S.I.D.A.K.A.R.Y.A
                         </h3>
                         <p class="text-white/90">
                             Continuing the journey through digital realms.
@@ -275,7 +277,7 @@
 
             <div class="col-span-12 md:col-span-4 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
-                    <img src="/assets/3.jpg" alt="Rahwana"
+                    <img src="/assets/rahwana.jpg" alt="Rahwana"
                         class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
@@ -290,7 +292,7 @@
 
             <div class="col-span-12 md:col-span-8 project-item h-[640px]" data-scroll>
                 <div class="relative h-full w-full overflow-hidden rounded-2xl">
-                    <img src="/assets/6.jpeg" alt="Nature Harmony"
+                    <img src="/assets/natureharmony.jpeg" alt="Nature Harmony"
                         class="project-image w-full h-full object-cover transition-transform duration-700" />
                     <div
                         class="project-overlay absolute inset-0 bg-gradient-to-b from-transparent to-black/70 p-6 md:p-8 flex flex-col justify-end opacity-0 transition-opacity duration-300">
@@ -381,6 +383,9 @@
         </p>
     </footer>
 
+    <script src="js/navbar.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/cursor.js"></script>
     <script src="js/main2.js"></script>
 </body>
 
