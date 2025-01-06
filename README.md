@@ -8,7 +8,7 @@
 const Developer = {
   name: "I Gede Shaka Pratama",
   projectName: "Werksasurart Studio",
-  projectLink: "https://werksasurart.vercel.app/",
+  projectLink: "https://werksasurartstudio.vercel.app/",
 };
 ```
 <div align="center">
