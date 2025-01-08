@@ -316,18 +316,28 @@
             <h2 class="text-6xl font-bold mb-16">Get in Touch</h2>
 
             <!-- Contact Form -->
-            <form class="space-y-8 mb-14">
+            <form id="contactForm" class="space-y-8 mb-14">
                 <div>
-                    <input type="text" placeholder="Your Name" class="form-input w-full" />
+                    <input type="text" id="name" placeholder="Your Name" class="form-input w-full" required />
                 </div>
                 <div>
-                    <input type="email" placeholder="Your Email" class="form-input w-full" />
+                    <input type="email" id="email" placeholder="Your Email" class="form-input w-full" required />
                 </div>
                 <div>
-                    <textarea placeholder="Your Message" class="form-input w-full h-32"></textarea>
+                    <textarea id="message" placeholder="Your Message" class="form-input w-full h-32"
+                        required></textarea>
                 </div>
-                <button class="magnetic-button">Send Message</button>
+                <button type="submit" class="magnetic-button">Send Message</button>
             </form>
+
+            <div id="popup" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center w-1/2">
+                    <p id="popupMessage" class="text-lg font-medium"></p>
+                    <button id="closePopup" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        Close
+                    </button>
+                </div>
+            </div>
 
             <!-- Social Media Links -->
             <div class="sm:pt-8 border-t border-white/10">
@@ -370,6 +380,40 @@
     <script src="js/cursor.js"></script>
     <script src="js/main.js"></script>
     <script>
+        const webhookURL = "https://discord.com/api/webhooks/1326534059714674709/90NZ44tNuS7bGlGVWBarftQfm_WsBh6fLw2luLowfk2SY6MHG04_O_P_xkZRc4juOdAK";
+
+        document.getElementById("contactForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            const payload = {
+                content: `<@!877202123346038785>\n**New Message Received:**\n\n**Name:** ${name}\n**Email:** ${email}\n**Message:** ${message}`,
+            };
+
+            try {
+                const response = await fetch(webhookURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                if (response.ok) {
+                    alert("Message sent successfully!");
+                    document.getElementById("contactForm").reset();
+                } else {
+                    alert("Failed to send message. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error sending message:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
+
         // Tombol kembali ke atas
         const backToTopButton = document.getElementById("backToTop");
 
