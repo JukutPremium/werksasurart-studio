@@ -62,6 +62,15 @@
         "title": "Clothing Design",
         "type": "Design",
         "year": "2024"
+      },
+      {
+        
+        "category": "design",
+        "image": "../assets/baju2.webp",
+        "alt": "Clothing Design",
+        "title": "Clothing Design",
+        "type": "Design",
+        "year": "2024"
       }
       
     ],
