@@ -1,109 +1,147 @@
 {
-    "gallery": [
+  "categories": [
+      {
+          "id": "clothesdesign",
+          "name": "Clothes Design"
+      },
+      {
+          "id": "branding",
+          "name": "Branding"
+      },
+      {
+          "id": "fanart",
+          "name": "Fan Art"
+      }
+  ],
+ "gallery": [
       {
        
-        "category": "digital-art",
-        "image": "../assets/katak.jpg",
-        "alt": "Godogan/kodok/katak",
+        "category": "clothesdesign",
+        "image": "assets/Baju/Godogan.jpg",
         "title": "Godogan/kodok/katak",
-        "type": "Digital Art",
-        "year": "2024"
+        "type": "Clothes Design"
       },
       {
        
-        "category": "illustration",
-        "image": "../assets/solomon.jpg",
-        "alt": "S.O.L.O.M.O.N",
-        "title": "S.O.L.O.M.O.N",
-        "type": "Illustration",
-        "year": "2024"
-      },
-      {
-       
-        "category": "illustration",
-        "image": "../assets/solomon.jpg",
-        "alt": "S.O.L.O.M.O.N",
-        "title": "S.O.L.O.M.O.N",
-        "type": "Illustration",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Head.jpg",
+        "title": "H.E.A.D",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "illustration",
-        "image": "../assets/natureharmony.jpeg",
-        "alt": "Nature Harmony",
-        "title": "Nature Harmony",
-        "type": "Illustration",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Head2.jpg",
+        "title": "H.E.A.D.2",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju1.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Medusa.jpg",
+        "title": "Medusa",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju1.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Rangda.jpg",
+        "title": "Rangda",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju2.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Rangda2.jpg",
+        "title": "Rangda 2",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju2.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/SavePinAndRedRose.jpg",
+        "title": "Save Pin and Red Rose",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju2.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/Semicolon.jpg",
+        "title": "Semicolon",
+        "type": "Clothes Design"
       },
       {
         
-        "category": "design",
-        "image": "../assets/baju2.webp",
-        "alt": "Clothing Design",
-        "title": "Clothing Design",
-        "type": "Design",
-        "year": "2024"
+        "category": "clothesdesign",
+        "image": "assets/Baju/SemicolonMoonWhale.jpg",
+        "title": "Semicolon Moon Whale",
+        "type": "Clothes Design"
+      },
+      {
+        
+        "category": "clothesdesign",
+        "image": "assets/Baju/Sidakarya.jpg",
+        "title": "Sidakarya",
+        "type": "Clothes Design"
+      },
+      {
+        
+        "category": "clothesdesign",
+        "image": "assets/Baju/ArsaWijaya.jpg",
+        "title": "Arsa Wijaya",
+        "type": "Clothes Design"
+      },
+      {
+        
+        "category": "clothesdesign",
+        "image": "assets/Baju/Tuwalen.jpg",
+        "title": "Tuwalen",
+        "type": "Clothes Design"
+      },
+      {
+        
+        "category": "clothesdesign",
+        "image": "assets/Baju/Werkudara.jpg",
+        "title": "Werkudara",
+        "type": "Clothes Design"
+      },
+      {
+        
+        "category": "branding",
+        "image": "assets/Logo/Bajra.jpg",
+        "title": "Bajra",
+        "type": "Branding"
+      },
+      {
+        
+        "category": "branding",
+        "image": "assets/Logo/BajraSanthi.jpg",
+        "title": "Bajra Shanti",
+        "type": "Branding"
+      },
+      {
+        
+        "category": "branding",
+        "image": "assets/Logo/BalArtGeneration.jpg",
+        "title": "BalArtGeneration",
+        "type": "Branding"
+      },
+      {
+        
+        "category": "branding",
+        "image": "assets/Logo/image1.jpg",
+        "title": "???",
+        "type": "Branding"
+      },
+      {
+        
+        "category": "branding",
+        "image": "assets/Logo/PasramanWindhutama.jpg",
+        "title": "PasramanWindhutama",
+        "type": "Branding"
       }
       
-    ],
-    "categories": [
-      {
-        "id": "digital-art",
-        "name": "Digital Art"
-      },
-      {
-        "id": "illustration",
-        "name": "Illustration"
-      },
-      {
-        "id": "design",
-        "name": "Design"
-      }
     ]
-  }
+}
+
+
