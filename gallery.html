@@ -258,7 +258,7 @@
                 const galleryItem = `
                     <div class="gallery-item group" data-category="${item.category}">
                         <div class="relative overflow-hidden rounded-lg cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" onclick="openModal('${item.image}', '${item.title}', '${item.type}', '${item.year}', '${item.alt}')">
-                            <img src="${item.image}" alt="${item.alt}" class="w-full aspect-[4/3] object-cover transform transition-transform duration-500 group-hover:scale-105">
+                            <img src="${item.image}" loading="lazy" alt="${item.alt}" class="w-full aspect-[4/3] object-cover transform transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
                                 <div class="text-white text-center p-4 sm:p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                     <h3 class="text-lg sm:text-xl font-bold mb-2">${item.title}</h3>
