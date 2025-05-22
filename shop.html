@@ -108,6 +108,79 @@
             background: rgba(255, 255, 255, 0.3);
             border-radius: 3px;
         }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            z-index: 9999;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .notification.error {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Form styles */
+        .form-input {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            background: rgba(31, 41, 55, 0.8);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            background-color: white;
+            color: black;
+        }
+
+        .step-indicator.completed {
+            background-color: #10b981;
+            color: white;
+        }
     </style>
 </head>
 
@@ -179,6 +252,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid"></div>
     </section>
 
+<!-- Product Details Modal -->
 <div class="modal fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
     <div class="absolute inset-0 bg-black/90 backdrop-blur-xl"></div>
     <div class="modal-content w-full max-w-5xl bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden relative z-10 max-h-[90vh] sm:max-h-[85vh]">
@@ -190,7 +264,19 @@
             </svg>
         </button>
 
-        <div class="grid md:grid-cols-2 h-full">
+        <!-- Step Indicator -->
+        <div class="flex justify-center items-center space-x-4 p-4 sm:p-6 border-b border-gray-700">
+            <div class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 border-white">
+                1
+            </div>
+            <div class="w-8 h-0.5 bg-gray-600"></div>
+            <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 border-gray-600">
+                2
+            </div>
+        </div>
+
+        <!-- Step 1: Product Selection -->
+        <div id="step-1" class="grid md:grid-cols-2 h-full">
             <div class="relative h-[250px] sm:h-[300px] md:h-full">
                 <img id="modal-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent md:hidden"></div>
@@ -206,12 +292,11 @@
 
                 <div class="mt-6 sm:mt-8 space-y-4">
                     <div class="flex items-center justify-between">
-                        <!-- <span class="text-gray-300">Price</span> -->
                         <span id="modal-price" class="text-xl sm:text-2xl font-bold"></span>
                     </div>
 
-                    <button class="w-full bg-white text-black py-3 sm:py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center space-x-2 group">
-                        <span>Add to Cart</span>
+                    <button id="next-button" class="w-full bg-white text-black py-3 sm:py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center space-x-2 group">
+                        <span>Next: Customer Info</span>
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -219,6 +304,94 @@
                         </svg>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Customer Information -->
+        <div id="step-2" class="hidden p-4 sm:p-6 md:p-8 custom-scrollbar overflow-y-auto">
+            <div class="max-w-2xl mx-auto">
+                <div class="mb-6 sm:mb-8 text-center">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-2">Customer Information</h3>
+                    <p class="text-gray-300">Please provide your contact details to complete the order</p>
+                </div>
+
+                <form id="customer-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="customer-name" class="block text-sm font-medium text-gray-300">
+                                Full Name <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="customer-name" name="name" required
+                                class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-400 focus:outline-none"
+                                placeholder="Enter your full name">
+                            <span class="error-message text-red-400 text-sm hidden">Please enter your full name</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="customer-phone" class="block text-sm font-medium text-gray-300">
+                                Phone Number <span class="text-red-400">*</span>
+                            </label>
+                            <input type="tel" id="customer-phone" name="phone" required
+                                class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-400 focus:outline-none"
+                                placeholder="Enter your phone number">
+                            <span class="error-message text-red-400 text-sm hidden">Please enter a valid phone number</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="customer-email" class="block text-sm font-medium text-gray-300">
+                            Email Address <span class="text-red-400">*</span>
+                        </label>
+                        <input type="email" id="customer-email" name="email" required
+                            class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-400 focus:outline-none"
+                            placeholder="Enter your email address">
+                        <span class="error-message text-red-400 text-sm hidden">Please enter a valid email address</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="customer-notes" class="block text-sm font-medium text-gray-300">
+                            Additional Notes (Optional)
+                        </label>
+                        <textarea id="customer-notes" name="notes" rows="3"
+                            class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-400 focus:outline-none resize-none"
+                            placeholder="Any special requests or notes..."></textarea>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                        <h4 class="text-lg font-bold mb-4">Order Summary</h4>
+                        <div id="order-summary" class="space-y-2 text-sm text-gray-300"></div>
+                        <div class="border-t border-gray-600 mt-4 pt-4">
+                            <div class="flex justify-between items-center text-lg font-bold">
+                                <span>Total:</span>
+                                <span id="order-total">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <button type="button" id="back-button" 
+                            class="flex-1 bg-gray-700 text-white py-3 sm:py-4 rounded-xl font-bold hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center space-x-2">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 transform rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                            <span>Back</span>
+                        </button>
+
+                        <button type="submit" id="buy-button" 
+                            class="flex-1 bg-white text-black py-3 sm:py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center space-x-2 group">
+                            <span id="button-text">Complete Order</span>
+                            <div id="loading-spinner" class="loading-spinner hidden"></div>
+                            <svg id="button-arrow" class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -230,6 +403,9 @@
     <script src="js/main.js"></script>
     <script>
         let shopData = null;
+        let currentProduct = null;
+        let currentStep = 1;
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1326534059714674709/90NZ44tNuS7bGlGVWBarftQfm_WsBh6fLw2luLowfk2SY6MHG04_O_P_xkZRc4juOdAK";
 
         async function loadShopData() {
             try {
@@ -293,7 +469,7 @@
                     <div class="product-card rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl" 
                          data-category="${product.category}">
                         <div class="relative aspect-[4/5]">
-                            <img src="${product.image}" alt="${product.title} loading="lazy"" 
+                            <img src="${product.image}" alt="${product.title}" loading="lazy" 
                                  class="w-full h-full object-cover rounded-xl">
                             
                             <div class="product-info absolute inset-x-0 bottom-0 p-6 z-10">
@@ -320,27 +496,40 @@
             const product = shopData.products.find((p) => p.id === productId);
             if (!product) return;
 
+            currentProduct = product;
+            currentStep = 1;
+            
             const modal = document.querySelector(".modal");
             document.getElementById("modal-image").src = product.image;
             document.getElementById("modal-title").textContent = product.title;
-            document.getElementById("modal-description").textContent =
-                product.description;
-            // document.getElementById(
-            //     "modal-price"
-            // ).textContent = `$${product.price}`;
+            document.getElementById("modal-description").textContent = product.description;
 
+            loadProductOptions();
+            updateStepIndicator();
+            showStep(1);
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+
+            // Add event listeners
+            document.getElementById("next-button").addEventListener("click", () => showStep(2));
+            document.getElementById("back-button").addEventListener("click", () => showStep(1));
+            document.getElementById("customer-form").addEventListener("submit", handlePurchase);
+        }
+
+        function loadProductOptions() {
             const optionsContainer = document.getElementById("modal-options");
             optionsContainer.innerHTML = "";
 
-            if (product.sizes) {
+            if (currentProduct.sizes) {
                 const sizeSelect = `
                     <div class="space-y-3">
                         <label class="block text-sm font-medium text-gray-300">Select Size</label>
-                        <select class="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300">
-                            ${product.sizes
+                        <select id="size-select" class="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300">
+                            ${currentProduct.sizes
                         .map(
                             (size) => `
-                                <option value="${size.name}">${size.name} - $${size.price}</option>
+                                <option value="${size.name}" data-price="${size.price}">${size.name} - $${size.price}</option>
                             `
                         )
                         .join("")}
@@ -348,17 +537,22 @@
                     </div>
                 `;
                 optionsContainer.insertAdjacentHTML("beforeend", sizeSelect);
+                
+                document.getElementById("size-select").addEventListener("change", updatePrice);
+                updatePrice();
+            } else if (currentProduct.price) {
+                document.getElementById("modal-price").textContent = `$${currentProduct.price}`;
             }
 
-            if (product.colors) {
+            if (currentProduct.colors) {
                 const colorSelect = `
                     <div class="space-y-3">
                         <label class="block text-sm font-medium text-gray-300">Select Color</label>
                         <div class="flex flex-wrap gap-3">
-                            ${product.colors
+                            ${currentProduct.colors
                         .map(
-                            (color) => `
-                                <button class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                            (color, index) => `
+                                <button class="color-option px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors duration-300 ${index === 0 ? 'bg-gray-800' : ''}" data-color="${color}">
                                     ${color}
                                 </button>
                             `
@@ -368,17 +562,24 @@
                     </div>
                 `;
                 optionsContainer.insertAdjacentHTML("beforeend", colorSelect);
+                
+                document.querySelectorAll(".color-option").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".color-option").forEach(b => b.classList.remove("bg-gray-800"));
+                        btn.classList.add("bg-gray-800");
+                    });
+                });
             }
 
-            if (product.formats) {
+            if (currentProduct.formats) {
                 const formatSelect = `
                     <div class="space-y-3">
                         <label class="block text-sm font-medium text-gray-300">Select Format</label>
                         <div class="flex flex-wrap gap-3">
-                            ${product.formats
+                            ${currentProduct.formats
                         .map(
-                            (format) => `
-                                <button class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                            (format, index) => `
+                                <button class="format-option px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors duration-300 ${index === 0 ? 'bg-gray-800' : ''}" data-format="${format}">
                                     ${format}
                                 </button>
                             `
@@ -388,19 +589,340 @@
                     </div>
                 `;
                 optionsContainer.insertAdjacentHTML("beforeend", formatSelect);
+                
+                document.querySelectorAll(".format-option").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".format-option").forEach(b => b.classList.remove("bg-gray-800"));
+                        btn.classList.add("bg-gray-800");
+                    });
+                });
             }
+        }
 
-            modal.classList.add("active");
-            document.body.style.overflow = "hidden";
+        function showStep(step) {
+            currentStep = step;
+            
+            document.getElementById("step-1").classList.toggle("hidden", step !== 1);
+            document.getElementById("step-2").classList.toggle("hidden", step !== 2);
+            
+            updateStepIndicator();
+            
+            if (step === 2) {
+                updateOrderSummary();
+            }
+        }
+
+        function updateStepIndicator() {
+            const indicators = document.querySelectorAll(".step-indicator");
+            
+            indicators.forEach((indicator, index) => {
+                const stepNum = index + 1;
+                indicator.classList.remove("active", "completed");
+                
+                if (stepNum < currentStep) {
+                    indicator.classList.add("completed");
+                } else if (stepNum === currentStep) {
+                    indicator.classList.add("active");
+                }
+            });
+        }
+
+        function updatePrice() {
+            const sizeSelect = document.getElementById("size-select");
+            if (sizeSelect) {
+                const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+                const price = selectedOption.getAttribute("data-price");
+                document.getElementById("modal-price").textContent = `$${price}`;
+            }
+        }
+
+        function updateOrderSummary() {
+            const selectedOptions = getSelectedOptions();
+            const summaryContainer = document.getElementById("order-summary");
+            const totalContainer = document.getElementById("order-total");
+            
+            let summaryHTML = `
+                <div class="flex justify-between">
+                    <span>Product:</span>
+                    <span>${currentProduct.title}</span>
+                </div>
+            `;
+            
+            if (selectedOptions.size) {
+                summaryHTML += `
+                    <div class="flex justify-between">
+                        <span>Size:</span>
+                        <span>${selectedOptions.size}</span>
+                    </div>
+                `;
+            }
+            
+            if (selectedOptions.color) {
+                summaryHTML += `
+                    <div class="flex justify-between">
+                        <span>Color:</span>
+                        <span>${selectedOptions.color}</span>
+                    </div>
+                `;
+            }
+            
+            if (selectedOptions.format) {
+                summaryHTML += `
+                    <div class="flex justify-between">
+                        <span>Format:</span>
+                        <span>${selectedOptions.format}</span>
+                    </div>
+                `;
+            }
+            
+            summaryContainer.innerHTML = summaryHTML;
+            totalContainer.textContent = `${selectedOptions.price}`;
+        }
+
+        function getSelectedOptions() {
+            const options = {};
+            
+            const sizeSelect = document.getElementById("size-select");
+            if (sizeSelect) {
+                const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+                options.size = selectedOption.value;
+                options.price = selectedOption.getAttribute("data-price");
+            } else if (currentProduct.price) {
+                options.price = currentProduct.price;
+            }
+            
+            const selectedColor = document.querySelector(".color-option.bg-gray-800");
+            if (selectedColor) {
+                options.color = selectedColor.getAttribute("data-color");
+            }
+            
+            const selectedFormat = document.querySelector(".format-option.bg-gray-800");
+            if (selectedFormat) {
+                options.format = selectedFormat.getAttribute("data-format");
+            }
+            
+            return options;
+        }
+
+        function validateForm() {
+            const form = document.getElementById("customer-form");
+            const inputs = form.querySelectorAll("input[required]");
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                const errorMessage = input.parentElement.querySelector(".error-message");
+                
+                input.classList.remove("error");
+                errorMessage.classList.add("hidden");
+                
+                if (!input.value.trim()) {
+                    input.classList.add("error");
+                    errorMessage.classList.remove("hidden");
+                    isValid = false;
+                } else if (input.type === "email" && !isValidEmail(input.value)) {
+                    input.classList.add("error");
+                    errorMessage.textContent = "Please enter a valid email address";
+                    errorMessage.classList.remove("hidden");
+                    isValid = false;
+                } else if (input.type === "tel" && !isValidPhone(input.value)) {
+                    input.classList.add("error");
+                    errorMessage.textContent = "Please enter a valid phone number";
+                    errorMessage.classList.remove("hidden");
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\d\s\-\+\(\)]{8,}$/;
+            return phoneRegex.test(phone.replace(/\s/g, ''));
+        }
+
+        async function handlePurchase(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                showNotification("Please fill in all required fields correctly.", "error");
+                return;
+            }
+            
+            const buyButton = document.getElementById("buy-button");
+            const buttonText = document.getElementById("button-text");
+            const loadingSpinner = document.getElementById("loading-spinner");
+            const buttonArrow = document.getElementById("button-arrow");
+            
+            if (!currentProduct) return;
+            
+            buyButton.disabled = true;
+            buttonText.textContent = "Processing...";
+            loadingSpinner.classList.remove("hidden");
+            buttonArrow.classList.add("hidden");
+            
+            try {
+                const selectedOptions = getSelectedOptions();
+                const customerInfo = getCustomerInfo();
+                await sendDiscordWebhook(currentProduct, selectedOptions, customerInfo);
+                
+                showNotification("Order sent successfully! We'll contact you soon.", "success");
+                closeModal();
+            } catch (error) {
+                console.error("Error sending order:", error);
+                showNotification("Failed to send order. Please try again.", "error");
+            } finally {
+                buyButton.disabled = false;
+                buttonText.textContent = "Complete Order";
+                loadingSpinner.classList.add("hidden");
+                buttonArrow.classList.remove("hidden");
+            }
+        }
+
+        function getCustomerInfo() {
+            return {
+                name: document.getElementById("customer-name").value.trim(),
+                email: document.getElementById("customer-email").value.trim(),
+                phone: document.getElementById("customer-phone").value.trim(),
+                notes: document.getElementById("customer-notes").value.trim()
+            };
+        }
+
+        async function sendDiscordWebhook(product, options, customerInfo) {
+            let message = "🎨 **NEW ART ORDER** 🎨\n";
+            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+            
+            message += "👤 **CUSTOMER INFORMATION**\n";
+            message += `**Name:** ${customerInfo.name}\n`;
+            message += `**Email:** ${customerInfo.email}\n`;
+            message += `**Phone:** ${customerInfo.phone}\n\n`;
+            
+            message += "🖼️ **PRODUCT DETAILS**\n";
+            message += `**Artwork:** ${product.title}\n`;
+            message += `**Price:** ${options.price}\n`;
+            
+            if (options.size) {
+                message += `**Size:** ${options.size}\n`;
+            }
+            if (options.color) {
+                message += `**Color:** ${options.color}\n`;
+            }
+            if (options.format) {
+                message += `**Format:** ${options.format}\n`;
+            }
+            
+            if (customerInfo.notes) {
+                message += `\n📝 **NOTES:**\n${customerInfo.notes}\n`;
+            }
+            
+            message += "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+            message += `\n⏰ **Order Time:** ${new Date().toLocaleString()}`;
+
+            const payload = {
+                content: message,
+                username: "Werksasurart Shop",
+                avatar_url: "https://cdn.discordapp.com/embed/avatars/0.png"
+            };
+
+            const response = await fetch(DISCORD_WEBHOOK_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        }
+
+        function showNotification(message, type = "success") {
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+           
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+    
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
         }
 
         function closeModal() {
             const modal = document.querySelector(".modal");
             modal.classList.remove("active");
             document.body.style.overflow = "";
+            currentProduct = null;
+            currentStep = 1;
+            
+        
+            const form = document.getElementById("customer-form");
+            if (form) {
+                form.reset();
+             
+                form.querySelectorAll(".form-input").forEach(input => {
+                    input.classList.remove("error");
+                });
+                form.querySelectorAll(".error-message").forEach(error => {
+                    error.classList.add("hidden");
+                });
+            }
+            
+            const nextButton = document.getElementById("next-button");
+            const backButton = document.getElementById("back-button");
+            const customerForm = document.getElementById("customer-form");
+            
+            if (nextButton) nextButton.removeEventListener("click", () => showStep(2));
+            if (backButton) backButton.removeEventListener("click", () => showStep(1));
+            if (customerForm) customerForm.removeEventListener("submit", handlePurchase);
         }
 
         document.addEventListener("DOMContentLoaded", loadShopData);
+         
+        document.addEventListener("click", (e) => {
+            const modal = document.querySelector(".modal");
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Add real-time validation
+        document.addEventListener("input", (e) => {
+            if (e.target.classList.contains("form-input")) {
+                const errorMessage = e.target.parentElement.querySelector(".error-message");
+                
+                if (e.target.value.trim()) {
+                    e.target.classList.remove("error");
+                    errorMessage.classList.add("hidden");
+                }
+            }
+        });
     </script>
 </body>
 
