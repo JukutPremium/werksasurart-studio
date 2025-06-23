@@ -121,13 +121,16 @@
                     <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
                         <h3 class="text-3xl font-bold mb-4">Our Vision</h3>
                         <p class="text-xl leading-relaxed opacity-70">
-                            To introduce artworks inspired by the rich cultural heritage of the Indonesian archipelago, particularly Balinese culture, to a broader audience through creative and meaningful expression.
+                            To introduce artworks inspired by the rich cultural heritage of the Indonesian archipelago,
+                            particularly Balinese culture, to a broader audience through creative and meaningful
+                            expression.
                         </p>
                     </div>
                     <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
                         <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
                         <p class="text-xl leading-relaxed opacity-70">
-                            To blend modern art styles with local cultural elements while exploring creative ideas, resulting in original and culturally significant works of art.
+                            To blend modern art styles with local cultural elements while exploring creative ideas,
+                            resulting in original and culturally significant works of art.
                         </p>
                     </div>
                 </div>
@@ -140,7 +143,10 @@
                                 Founder & Creative Director
                             </p>
                             <p class="text-base opacity-70 leading-relaxed">
-                                Hello! I am an art enthusiast specializing in digital art and illustration. I am passionate about bringing cultural narratives to life through visually engaging and contemporary artworks. It’s a pleasure to connect with you—may your days always be filled with happiness.
+                                Hello! I am an art enthusiast specializing in digital art and illustration. I am
+                                passionate about bringing cultural narratives to life through visually engaging and
+                                contemporary artworks. It’s a pleasure to connect with you—may your days always be
+                                filled with happiness.
                             </p>
                         </div>
                     </div>
@@ -207,11 +213,11 @@
                     </div> -->
                 </div>
                 <div class="bg-white/5 md:hidden mt-4 p-6 md:p-8 rounded-2xl backdrop-blur-sm text-center">
-                        <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="5">
-                            0
-                        </h4>
-                        <p class="text-sm md:text-lg opacity-70">Years Experience</p>
-                    </div>
+                    <h4 class="text-2xl md:text-4xl font-bold mb-1 md:mb-2 stat-number" data-target="5">
+                        0
+                    </h4>
+                    <p class="text-sm md:text-lg opacity-70">Years Experience</p>
+                </div>
             </div>
         </div>
     </section>
@@ -437,7 +443,9 @@
 }
 </script>
     <script>
-        const webhookURL = "https://discord.com/api/webhooks/1385544518367055937/26Oy_bp1yNDOO42VDAGQyjEEBzj1ljQfA3Poo5xNCofn2eNC56BEJarj1BpF3AIoZV5c";
+        const encoded = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjUxOTU2MTU0OTEyMzU4NS9zVFdpRDdSZFhQTkJDbzJtNXlPVWpyYWxiV21ORXExRVRXd3ZISnJwNWp4dHNSQl90WmdaQVROZVNIcGx1aWRXdVZzRw=="
+        let decoded = window.atob(encoded);
+        // const webhookURL = "https://discord.com/api/webhooks/1385544518367055937/26Oy_bp1yNDOO42VDAGQyjEEBzj1ljQfA3Poo5xNCofn2eNC56BEJarj1BpF3AIoZV5c";
 
         document.getElementById("contactForm").addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -451,7 +459,7 @@
             };
 
             try {
-                const response = await fetch(webhookURL, {
+                const response = await fetch(decoded, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
